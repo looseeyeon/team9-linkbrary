@@ -13,10 +13,17 @@
   border: none;
 }
 
-.LinkAdd {
+.LandingLinkAdd {
   width: 350px;
 }
 
 .Landinglogin {
   width: 128px;
+}
+
+.AddLinks {
+  height: 37px;
+  padding: 10px 16px 10px 16px;
+  font-size: 14px;
+  line-height: 16.71px;
 }
