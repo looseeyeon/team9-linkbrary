@@ -1,0 +1,122 @@
+.headerWrapper {
+  background-color: var(--gray-100);
+}
+
+.header {
+  height: 953px;
+  text-align: center;
+  padding-top: 70px;
+}
+
+.landingHeader {
+  position: relative;
+  max-width: 1200px;
+  max-height: 590px;
+  width: 100%;
+  height: 100%;
+  margin: 40px auto 0;
+}
+
+.header h1 {
+  margin-bottom: 40px;
+  font-size: 64px;
+  line-height: 80px;
+}
+
+.header span {
+  background: linear-gradient(96deg, #fe8a8a 1.72%, #a4ceff 74.97%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.contents {
+  display: flex;
+  flex-direction: column;
+  max-width: 998px;
+  margin: 120px auto 0;
+  gap: 100px;
+}
+
+.contents h2 {
+  font-size: 48px;
+  letter-spacing: -0.3px;
+}
+
+.contents p {
+  font-weight: 500;
+  line-height: 24px;
+  color: #6b6b6b;
+}
+
+.saveContent,
+.shareContent,
+.manageContent,
+.searchContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 998px;
+  max-height: 450px;
+}
+
+.manageContent .imageContainer,
+.searchContent .imageContainer {
+  order: -1;
+}
+
+.saveContent span {
+  background: linear-gradient(96deg, #fe8a8a 1.72%, #a4ceff 74.97%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.manageContent span {
+  background: linear-gradient(277deg, #6fbaff 59.22%, #ffd88b 93.66%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.shareContent span {
+  background: linear-gradient(
+    99deg,
+    #6d7ccd 19.76%,
+    rgba(82, 136, 133, 0.22) 52.69%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.searchContent span {
+  background: var(
+    --Fandom-K-gra-blue-to-pink,
+    linear-gradient(271deg, #fe578f -9.84%, #68e8f9 107.18%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.imageContainer {
+  max-width: 550px;
+  max-height: 450px;
+  width: 100%;
+}
+
+.images {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5/4;
+}
+
+.images img {
+  border-radius: 15px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
