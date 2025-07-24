@@ -4,7 +4,13 @@ import styles from "../styles/AddLinks.module.css";
 import Button from "./Button";
 
 export default function AddLinks() {
-  // const [link, setLink] = useState("");
+  const [link, setLink] = useState("");
+
+  const handleAddLink = async () => {
+    const response = await axios.post("/links", { url: link });
+    console.log(`추가된 링크: ${response.data}`);
+    setLink("");
+  };
 
   return (
     <div className={styles.linkContainer}>
@@ -23,7 +29,7 @@ export default function AddLinks() {
           placeholder="링크를 추가해 보세요"
           className={styles.input}
         />
-        <Button type="AddLinks">
+        <Button type="AddLinks" onClick={handleAddLink}>
           추가하기
         </Button>
       </div>
