@@ -21,7 +21,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await axios.post("/auth/sign-in", { email, password });
-  
+
       const accessToken = res.data.accessToken;
       if (accessToken) {
         localStorage.setItem("accessToken", accessToken);
@@ -29,13 +29,12 @@ export default function Login() {
       } else {
         console.warn("accessToken이 응답에 포함되지 않았습니다.");
       }
-  
+
       router.push("/");
     } catch (error) {
       console.error("로그인 실패:", error.response?.data || error.message);
     }
   }
-  
 
   return (
     <div className={styles.authWrapper}>
