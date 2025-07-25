@@ -6,19 +6,19 @@
   white-space: nowrap;
   cursor: pointer;
   color: #f5f5f5;
-  gap: 10px;
+  /* gap: 10px; */
   font-weight: 600;
   border: none;
 }
 
 .landingLinkAdd {
   width: 350px;
-  padding: 12p6x 16px;
+  padding: 12px 16px;
 }
 
-.landinglogin {
+.landingLogin {
   width: 128px;
-  padding: 40.5px 16px;
+  padding: 0px 16px;
 }
 
 .addLinks {
@@ -34,7 +34,7 @@
 
 .login {
   width: 400px;
-  padding: 168.5px 16px;
+  margin-top: 30px;
 }
 
 .disabled {

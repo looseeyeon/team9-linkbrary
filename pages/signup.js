@@ -23,9 +23,9 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await axios.post("9/auth/sign-up", { name, email, password });
+      await axios.post("/auth/sign-up", { name, email, password });
     } catch (error) {
-      console.error("회원가입 실패:", error);
+      console.error("회원가입 실패:", error.response?.data || error.message);
     }
   }
 
@@ -34,13 +34,15 @@ export default function SignUp() {
       <div className={styles.authContainer}>
         <div className={styles.logoContainer}>
           <div className={styles.logoImage}>
-            <Image
-              src="/assets/Linkbrary.png"
-              alt="로고이미지"
-              width={210.58}
-              height={38}
-              className={styles.logoImage}
-            />
+            <Link href="/">
+              <Image
+                src="/assets/Linkbrary.png"
+                alt="로고이미지"
+                width={210.58}
+                height={38}
+                className={styles.logoImage}
+              />
+            </Link>
           </div>
           <div className={styles.textContainer}>
             <p>

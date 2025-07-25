@@ -29,6 +29,7 @@ export default function LandingPage() {
                 src="/assets/landingmain.png"
                 alt={"랜딩페이지 상단이미지"}
                 fill
+                sizes="(max-width: 1118px) 100vw, 50vw"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -52,6 +53,7 @@ export default function LandingPage() {
                   src="/assets/savelinks.png"
                   alt={"랜딩페이지 상단이미지"}
                   fill
+                  sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -74,6 +76,7 @@ export default function LandingPage() {
                   src="/assets/managelinks.png"
                   alt={"랜딩페이지 상단이미지"}
                   fill
+                  sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -97,6 +100,7 @@ export default function LandingPage() {
                   src="/assets/sharelinks.png"
                   alt={"랜딩페이지 상단이미지"}
                   fill
+                  sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
@@ -116,6 +120,7 @@ export default function LandingPage() {
                   src="/assets/searchlinks.png"
                   alt={"랜딩페이지 상단이미지"}
                   fill
+                  sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>

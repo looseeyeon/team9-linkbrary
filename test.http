@@ -1,8 +1,18 @@
-# POST https://linkbrary-api.vercel.app/9/auth/sign-up
-# Content-Type: application/json
+POST https://linkbrary-api.vercel.app/9/auth/sign-up
+Content-Type: application/json
 
-# {
-#   "email": "dlasdkasd@gmail.com",
-#   "password": "string",
-#   "name": "string"
-# }
+{
+  "email": "abcd@gmail.com",
+  "password": "string",
+  "name": "string"
+}
+
+###
+POST https://linkbrary-api.vercel.app/9/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "abcd@gmail.com",
+  "password": "string"
+  
+}
