@@ -5,14 +5,29 @@ import Label from "@/components/Label";
 import Input from "@/components/Input";
 import styles from "@/styles/signup.module.css";
 import { useState } from "react";
+import axios from "@/lib/axios";
 
 export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
   const isMisMatch = confirm && password !== confirm;
+
+  const isFormValid =
+    password && confirm && email && name && password === confirm;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.post("9/auth/sign-up", { name, email, password });
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+    }
+  }
 
   return (
     <div className={styles.authWrapper}>
@@ -30,11 +45,11 @@ export default function SignUp() {
           <div className={styles.textContainer}>
             <p>
               이미 회원이신가요?
-              <Link href="/Login">로그인하기</Link>
+              <Link href="/login">로그인하기</Link>
             </p>
           </div>
         </div>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <Label className={styles.label} htmlFor="email">
             이메일
           </Label>
@@ -43,7 +58,8 @@ export default function SignUp() {
             className={styles.input}
             name="email"
             type="email"
-            placeholder="codeit@codeit.com"
+            // placeholder="codeit@codeit.com"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Label className={styles.label}>이름</Label>
           <Input
@@ -51,7 +67,8 @@ export default function SignUp() {
             className={styles.input}
             name="name"
             type="text"
-            placeholder="이름"
+            // placeholder="이름"
+            onChange={(e) => setName(e.target.value)}
           />
           <Label className={styles.label} htmlFor="password">
             비밀번호
@@ -83,7 +100,7 @@ export default function SignUp() {
             <Input
               id="password-confirm"
               className={isMisMatch ? `${styles.passwordError}` : styles.input}
-              name="password"
+              name="password-confirm"
               type={confirmVisible ? "text" : "password"}
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
@@ -102,7 +119,7 @@ export default function SignUp() {
           {isMisMatch && (
             <p className={styles.errorText}>비밀번호가 다릅니다.</p>
           )}
-          <Button variant="signUp" type="submit">
+          <Button variant="signUp" type="submit" disabled={!isFormValid}>
             회원가입
           </Button>
         </form>

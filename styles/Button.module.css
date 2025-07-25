@@ -36,3 +36,8 @@
   width: 400px;
   padding: 168.5px 16px;
 }
+
+.disabled {
+  background: var(--gray-400);
+  cursor: not-allowed;
+}
