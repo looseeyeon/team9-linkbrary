@@ -4,11 +4,19 @@ import Image from "next/image";
 import Label from "@/components/Label";
 import Input from "@/components/Input";
 import styles from "@/styles/signup.module.css";
+import { useState } from "react";
 
 export default function SignUp() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const isMisMatch = confirm && password !== confirm;
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div className={styles.authWrapper}>
+      <div className={styles.authContainer}>
         <div className={styles.logoContainer}>
           <div className={styles.logoImage}>
             <Image
@@ -48,21 +56,52 @@ export default function SignUp() {
           <Label className={styles.label} htmlFor="password">
             비밀번호
           </Label>
-          <Input
-            id="password"
-            className={styles.input}
-            name="password"
-            type="password"
-          />
+          <div className={styles.passwordWrapper}>
+            <Input
+              id="password"
+              className={styles.input}
+              name="password"
+              type={passwordVisible ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Image
+              src={
+                passwordVisible ? "/assets/eye-on.png" : "/assets/eye-off.png"
+              }
+              alt="비밀번호 숨김 이미지"
+              width={16}
+              height={16}
+              className={styles.eyeOff}
+              onClick={() => setPasswordVisible((prev) => !prev)}
+            />
+          </div>
           <Label className={styles.label} htmlFor="password">
             비밀번호 확인
           </Label>
-          <Input
-            id="password-checj"
-            className={styles.input}
-            name="password"
-            type="password"
-          />
+          <div className={styles.passwordWrapper}>
+            <Input
+              id="password-confirm"
+              className={isMisMatch ? `${styles.passwordError}` : styles.input}
+              name="password"
+              type={confirmVisible ? "text" : "password"}
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+            />
+            <Image
+              src={
+                confirmVisible ? "/assets/eye-on.png" : "/assets/eye-off.png"
+              }
+              alt="비밀번호 숨김 이미지"
+              width={16}
+              height={16}
+              className={styles.eyeOff}
+              onClick={() => setConfirmVisible((prev) => !prev)}
+            />
+          </div>
+          {isMisMatch && (
+            <p className={styles.errorText}>비밀번호가 다릅니다.</p>
+          )}
           <Button variant="signUp" type="submit">
             회원가입
           </Button>

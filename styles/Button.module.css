@@ -9,7 +9,6 @@
   gap: 10px;
   font-weight: 600;
   border: none;
-  display: block;
 }
 
 .landingLinkAdd {
@@ -30,6 +29,7 @@
 
 .signUp {
   width: 400px;
+  margin-top: 30px;
 }
 
 .login {
