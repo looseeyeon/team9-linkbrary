@@ -5,7 +5,7 @@ import Label from "@/components/Label";
 import Input from "@/components/Input";
 import styles from "@/styles/signup.module.css";
 import { useState } from "react";
-import axios from "@/lib/axios";
+import axios from "axios";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
