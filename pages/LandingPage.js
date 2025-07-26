@@ -28,9 +28,8 @@ export default function LandingPage() {
               <Image
                 src="/assets/landingmain.png"
                 alt={"랜딩페이지 상단이미지"}
-                fill
-                sizes="(max-width: 1118px) 100vw, 50vw"
-                style={{ objectFit: "cover" }}
+                width={1118}
+                height={659}
               />
             </div>
           </div>

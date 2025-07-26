@@ -27,7 +27,7 @@ export default function Login() {
         localStorage.setItem("accessToken", accessToken);
         console.log("Access Token 저장 완료:", accessToken);
       } else {
-        console.warn("accessToken이 응답에 포함되지 않았습니다.");
+        console.log("accessToken이 응답에 포함되지 않았습니다.");
       }
 
       router.push("/");
