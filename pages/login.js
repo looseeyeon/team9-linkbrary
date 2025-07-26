@@ -33,6 +33,9 @@ export default function Login() {
       router.push("/");
     } catch (error) {
       console.error("로그인 실패:", error.response?.data || error.message);
+
+      const errorMessage = error.response?.data?.message || error.message;
+      alert(`${errorMessage}`);
     }
   }
 
