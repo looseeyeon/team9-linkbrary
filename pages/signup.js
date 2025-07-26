@@ -1,11 +1,12 @@
 import Button from "@/components/Button";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Label from "@/components/Label";
 import Input from "@/components/Input";
 import styles from "@/styles/signup.module.css";
 import { useState } from "react";
-import axios from "axios";
+import axios from "@/lib/axios";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,8 @@ export default function SignUp() {
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+
+  const router = useRouter();
 
   const isMisMatch = confirm && password !== confirm;
 
@@ -24,6 +27,8 @@ export default function SignUp() {
     e.preventDefault();
     try {
       await axios.post("/auth/sign-up", { name, email, password });
+      alert("회원가입이 완료되었습니다!");
+      router.push("/login");
     } catch (error) {
       console.error("회원가입 실패:", error.response?.data || error.message);
     }
