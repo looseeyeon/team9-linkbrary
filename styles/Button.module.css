@@ -41,3 +41,10 @@
   background: var(--gray-400);
   cursor: not-allowed;
 }
+
+
+.editModal {
+  width: 280px;
+  height: 51px;
+  font-size: 16px;
+}

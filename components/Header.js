@@ -14,7 +14,7 @@ export default function Header() {
             className={styles.logoImage}
             width={133}
             height={24}
-          />
+          ></Image>
         </Link>
         <Link href="/login">
           <Button variant="landingLogin">로그인</Button>

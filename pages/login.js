@@ -51,7 +51,7 @@ export default function Login() {
                 width={210.58}
                 height={38}
                 className={styles.logoImage}
-              />
+              ></Image>
             </Link>
           </div>
           <div className={styles.textContainer}>
@@ -95,7 +95,7 @@ export default function Login() {
               height={16}
               className={styles.eyeOff}
               onClick={() => setPasswordVisible((prev) => !prev)}
-            />
+            ></Image>
           </div>
           <Button variant="login" type="submit" disabled={!isFormValid}>
             로그인

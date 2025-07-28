@@ -1,0 +1,63 @@
+.modalWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 238px;
+  padding: 32px 40px;
+  border: solid 1px var(--gray-200);
+  border-radius: 15px;
+  position: relative;
+}
+
+.shareWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 209x;
+  padding: 32px 40px;
+  border: solid 1px var(--gray-200);
+  border-radius: 15px;
+  position: relative;
+}
+
+.editInput {
+  width: 280px;
+  height: 60px;
+  margin-top: 24px;
+  margin-bottom: 15px;
+}
+
+.closeImage {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.subTitle {
+  font-size: 14px;
+  padding-top: 8px;
+  padding-bottom: 24px;
+  color: var(--gray-300);
+}
+
+.shareText {
+  font-size: 13px;
+}
+
+.shareContents {
+  display: flex;
+  flex-direction: column;
+}
+
+.shareContainer {
+  display: flex;
+  gap: 32px;
+}

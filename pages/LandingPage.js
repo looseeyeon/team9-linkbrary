@@ -30,7 +30,7 @@ export default function LandingPage() {
                 alt={"랜딩페이지 상단이미지"}
                 width={1118}
                 height={659}
-              />
+              ></Image>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function LandingPage() {
                   fill
                   sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
-                />
+                ></Image>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function LandingPage() {
                   fill
                   sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
-                />
+                ></Image>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function LandingPage() {
                   fill
                   sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
-                />
+                ></Image>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function LandingPage() {
                   fill
                   sizes="(max-width: 550px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
-                />
+                ></Image>
               </div>
             </div>
           </div>
