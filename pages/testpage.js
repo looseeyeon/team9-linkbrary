@@ -6,9 +6,8 @@ export default function TestPage() {
   return (
     <div>
       test
-      <AddLinks />
       <EditModal />
-      <ShareModal />
+      {/* <ShareModal /> */}
     </div>
   );
 }
