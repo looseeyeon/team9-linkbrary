@@ -1,7 +1,7 @@
 import Button from "../Button";
 import Input from "../Input";
 import styles from "@/styles/Modals/EditModal.module.css";
-import Image from "next/image";
+
 import Modal from "./Modal";
 
 export default function EditModal() {
