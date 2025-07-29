@@ -2,12 +2,13 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/AddLinks.module.css";
 import Button from "./Button";
+import axios from "@/lib/axios";
 
 export default function AddLinks() {
   const [link, setLink] = useState("");
 
   const handleAddLink = async () => {
-    const response = await axios.post("/links", { url: link });
+    const response = await axios.post("/links", { url: link ,folderId: 1});
     console.log(`추가된 링크: ${response.data}`);
     setLink("");
   };
@@ -29,7 +30,7 @@ export default function AddLinks() {
           placeholder="링크를 추가해 보세요"
           className={styles.input}
         />
-        <Button type="AddLinks" onClick={handleAddLink}>
+        <Button variant="addLinks" onClick={handleAddLink}>
           추가하기
         </Button>
       </div>
