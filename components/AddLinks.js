@@ -6,10 +6,19 @@ import axios from "@/lib/axios";
 
 export default function AddLinks() {
   const [link, setLink] = useState("");
-
+  
   const handleAddLink = async () => {
-    const response = await axios.post("/links", { url: link ,folderId: 1});
-    console.log(`추가된 링크: ${response.data}`);
+    const token = localStorage.getItem("accessToken")
+    const res = await axios.post(
+      "/links",
+      { url: link, folderId:1 },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(`추가된 링크: ${res.data}`);
     setLink("");
   };
 
@@ -29,6 +38,8 @@ export default function AddLinks() {
           type="text"
           placeholder="링크를 추가해 보세요"
           className={styles.input}
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
         />
         <Button variant="addLinks" onClick={handleAddLink}>
           추가하기

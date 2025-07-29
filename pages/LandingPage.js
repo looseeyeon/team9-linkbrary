@@ -2,18 +2,10 @@ import Button from "@/components/Button";
 import styles from "@/styles/LandingPage.module.css";
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function LandingPage() {
-  // const [isLoggedIn, setIsLoggdedIn] = useState(false);
-
-  // const handleLinkaddClick = () => {
-  //   if (isLoggedIn) {
-  //     router.push("/LinkPage");
-  //   } else {
-  //     router.push("/LoginPage");
-  //   }
-  // };
-
+const router = useRouter()
   return (
     <div>
       <div className={styles.wrapper}>
@@ -23,7 +15,7 @@ export default function LandingPage() {
               <span>세상의 모든 정보</span>를 <br />
               쉽게 저장하고 관리해 보세요
             </h1>
-            <Button variant="landingLinkAdd">링크 추가하기</Button>
+            <Button variant="landingLinkAdd" onClick={()=> {router.push('/links')}}>링크 추가하기</Button>
             <div className={styles.landingHeader}>
               <Image
                 src="/assets/landingmain.png"

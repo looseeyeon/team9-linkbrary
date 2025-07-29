@@ -12,7 +12,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
 
@@ -23,15 +22,12 @@ export default function Login() {
     try {
       const res = await axios.post("/auth/sign-in", { email, password });
       const accessToken = res.data.accessToken;
-      setIsLoggedIn(false);
-      
+
       if (accessToken) {
         localStorage.setItem("accessToken", accessToken);
         console.log("Access Token 저장 완료:", accessToken);
-        setIsLoggedIn(true);
       } else {
         console.log("accessToken이 응답에 포함되지 않았습니다.");
-        setIsLoggedIn(false);
       }
 
       router.push("/");
