@@ -27,38 +27,15 @@
   left: 40%;
 }
 
-.shareWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 360px;
-  height: 209x;
-  padding: 32px 40px;
-  border: solid 1px var(--gray-200);
-  border-radius: 15px;
-  position: relative;
-  background-color: #ffffff;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-}
-
-.editInput {
-  width: 280px;
-  height: 60px;
-  margin-top: 24px;
-  margin-bottom: 15px;
-}
-
-.closeImage {
+.closeButton {
   position: absolute;
   right: 16px;
   top: 16px;
 }
 
-.title {
+.modalTitle {
   font-size: 20px;
+  font-weight: 600;
 }
 
 .subTitle {
@@ -66,18 +43,4 @@
   padding-top: 8px;
   padding-bottom: 24px;
   color: var(--gray-300);
-}
-
-.shareText {
-  font-size: 13px;
-}
-
-.shareContents {
-  display: flex;
-  flex-direction: column;
-}
-
-.shareContainer {
-  display: flex;
-  gap: 32px;
 }

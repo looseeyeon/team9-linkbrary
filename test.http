@@ -16,3 +16,11 @@ Content-Type: application/json
   "password": "string"
   
 }
+
+###
+POST https://linkbrary-api.vercel.app/9/folders
+Content-Type: application/json
+
+{
+  "name": "1"
+}

@@ -19,7 +19,7 @@ export default function AddLinks() {
       }
     );
     console.log(`추가된 링크: ${res.data}`);
-    setLink("");
+    setLinks((prevLinks) => [...prevLinks, data]);
   };
 
   return (
