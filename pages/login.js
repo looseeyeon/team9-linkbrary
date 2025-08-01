@@ -6,7 +6,7 @@ import Label from "@/components/Label";
 import Input from "@/components/Input";
 import styles from "@/styles/signup.module.css";
 import { useState } from "react";
-import axios from "@/lib/axios";
+import { useAuth } from "@/contexts/AuthProvider";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,22 +14,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
+  const { login } = useAuth();
 
   const isFormValid = password && email;
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/sign-in", { email, password });
-      const accessToken = res.data.accessToken;
-
-      if (accessToken) {
-        localStorage.setItem("accessToken", accessToken);
-        console.log("Access Token 저장 완료:", accessToken);
-      } else {
-        console.log("accessToken이 응답에 포함되지 않았습니다.");
-      }
-
+      await login({ email, password });
       router.push("/");
     } catch (error) {
       console.error("로그인 실패:", error.response?.data || error.message);

@@ -1,0 +1,56 @@
+.cardWrapper {
+  width: 340px;
+  height: 334px;
+  border-radius: 15px;
+  box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  width: 340px;
+  height: 200px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.infoWrapper {
+  display: flex;
+  width: 100%;
+  padding: 15px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.infoContainer {
+  display: flex;
+}
+.urlTitle {
+  overflow: hidden;
+  width: 200px;
+  font-size: 16px;
+  height: 20px;
+  background-color: #ccc;
+}
+
+.timePast {
+  color: var(--gray-400);
+  font-size: 13px;
+  background-color: #ccc;
+  width: 100px;
+  height: 20px;
+}
+
+.date {
+  background-color: #ccc;
+  width: 100px;
+  height: 20px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}

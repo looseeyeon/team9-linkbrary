@@ -1,0 +1,6 @@
+.linksPageWrapper {
+  margin: 0 auto;
+  height: 100vh;
+  padding-bottom: 30px;
+  background-color: var(-gray-200);
+}

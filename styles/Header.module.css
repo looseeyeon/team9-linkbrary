@@ -17,3 +17,25 @@
   width: 133px;
   height: 24px;
 }
+
+.favoriteButton{
+  width: 93px;
+  height: 37px;
+  border-radius: 4px;
+  border: 1px solid #6d6afe;
+  text-align: center;
+  background-color: #E7EFFB;
+}
+
+.headerRight{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.userInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}

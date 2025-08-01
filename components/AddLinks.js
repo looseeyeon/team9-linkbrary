@@ -4,22 +4,41 @@ import styles from "../styles/AddLinks.module.css";
 import Button from "./Button";
 import axios from "@/lib/axios";
 
-export default function AddLinks() {
+export default function AddLinks({ onLinkAdded }) {
   const [link, setLink] = useState("");
-  
+
   const handleAddLink = async () => {
-    const token = localStorage.getItem("accessToken")
-    const res = await axios.post(
-      "/links",
-      { url: link, folderId:1 },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    if (!link.trim()) {
+      alert("링크를 입력해주세요.");
+      return;
+    }
+
+    try {
+      console.log("링크 추가 요청:", { url: link });
+
+      const res = await axios.post("/links", {
+        url: link,
+        folderId: 1385,
+      });
+
+      console.log("서버 응답:", res.data);
+      setLink(""); // 입력 필드 초기화
+
+      // 부모 컴포넌트에 새 링크 추가 알림
+      if (onLinkAdded) {
+        onLinkAdded(res.data);
       }
-    );
-    console.log(`추가된 링크: ${res.data}`);
-    setLinks((prevLinks) => [...prevLinks, data]);
+    } catch (error) {
+      console.error("링크 추가 실패:", error);
+      console.error("에러 응답:", error.response?.data);
+
+      // 더 구체적인 에러 메시지 표시
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "링크 추가에 실패했습니다.";
+      alert(`링크 추가 실패: ${errorMessage}`);
+    }
   };
 
   return (
