@@ -1,10 +1,11 @@
-import Skeleton from "@/components/Skeleton";
+import AddInFolderModal from "@/components/Modals/AddInFolderModal";
+
 
 export default function TestPage() {
   return (
     <div>
       test
-      <Skeleton />
+      <AddInFolderModal />
     </div>
   );
 }

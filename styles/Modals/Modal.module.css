@@ -16,14 +16,13 @@
   justify-content: center;
   align-items: center;
   width: 360px;
-  height: 238px;
   padding: 32px 40px;
   border: solid 1px var(--gray-200);
   border-radius: 15px;
   position: relative;
   background-color: #ffffff;
   z-index: 100;
-  top: 50%;
+  top: 30%;
   left: 40%;
 }
 
@@ -31,6 +30,7 @@
   position: absolute;
   right: 16px;
   top: 16px;
+  cursor: pointer;
 }
 
 .modalTitle {
@@ -43,4 +43,9 @@
   padding-top: 8px;
   padding-bottom: 24px;
   color: var(--gray-300);
+}
+
+
+.addInFolder {
+  height: 389px;
 }

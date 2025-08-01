@@ -1,10 +1,10 @@
 import styles from "@/styles/Modals/Modal.module.css";
 import Image from "next/image";
 
-export default function Modal({ title, children, onClose }) {
+export default function Modal({ title, children, onClose, variant }) {
   return (
     <div className={styles.backgroundOverlay}>
-      <div className={styles.modalWrapper}>
+      <div className={`${styles.modalWrapper} ${styles[variant]}`}>
         <div onClick={onClose} className={styles.closeButton}>
           <Image
             src="/assets/close.png"

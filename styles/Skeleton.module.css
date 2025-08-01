@@ -24,9 +24,11 @@
   align-items: flex-start;
   gap: 10px;
 }
+
 .infoContainer {
   display: flex;
 }
+
 .urlTitle {
   overflow: hidden;
   width: 200px;

@@ -1,0 +1,43 @@
+.pageWrapper {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.folderWrapper {
+  height: 35px;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  padding: 8px 12px;
+  overflow: hidden;
+}
+
+.folderName {
+  font-size: 16px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.folderList {
+  padding-top: 40px;
+  display: inline-flex;
+  gap: 8px;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.addFolderButton {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 45px;
+}

@@ -4,3 +4,25 @@
   padding-bottom: 30px;
   background-color: var(-gray-200);
 }
+
+.title {
+  font-weight: 700;
+  color: var(--gray-900);
+  padding-top: 40px;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 12px;
+
+}
+
+.titleWrapper{
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
