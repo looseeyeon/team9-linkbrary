@@ -1,8 +1,8 @@
-import Card from "./linkCard";
+import LinkCard from "./linkCard";
 import Skeleton from "./Skeleton";
-import styles from "@/styles/CardList.module.css";
+import styles from "@/styles/linkList.module.css";
 
-export default function CardList({
+export default function LinkList({
   items,
   isLoading = false,
   skeletonCount = 9,
@@ -16,7 +16,7 @@ export default function CardList({
             <Skeleton key={`skeleton-${index}`} />
           ))
         : list.map((link) => (
-            <Card
+            <LinkCard
               key={link.id}
               imageSource={link.imageSource}
               description={link.description}

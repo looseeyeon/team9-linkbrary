@@ -1,7 +1,7 @@
 import Image from "next/image";
-import styles from "@/styles/Card.module.css";
+import styles from "@/styles/linkCard.module.css";
 
-export default function Card({
+export default function LinkCard({
   imageSource,
   description,
   createdAt,
