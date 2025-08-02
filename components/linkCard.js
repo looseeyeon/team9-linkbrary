@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "@/styles/linkCard.module.css";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import LinkEditModal from "@/components/Modals/linkEditModal";
+import useOnClickOutside from "@/hooks/useOnClickOutside";
 
 export default function LinkCard({
   imageSource,
@@ -10,7 +12,10 @@ export default function LinkCard({
   url,
 }) {
   const [imageError, setImageError] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const ref = useRef(null);
 
+  useOnClickOutside(ref, () => setIsPopoverOpen(false));
 
   const handleCardClick = () => {
     let fullUrl = url;
@@ -24,7 +29,6 @@ export default function LinkCard({
     setImageError(true);
   };
 
-
   const date = new Date(createdAt);
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
@@ -34,9 +38,13 @@ export default function LinkCard({
     minute: "numeric",
   }).format(date);
 
+  const handleKebabClick = (e) => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
   return (
-    <div className={styles.cardWrapper} onClick={handleCardClick}>
-      <div className={styles.imageWrapper}>
+    <div className={styles.cardWrapper}>
+      <div className={styles.imageWrapper} onClick={handleCardClick}>
         <Image
           className={styles.cardImage}
           src={
@@ -64,25 +72,38 @@ export default function LinkCard({
           <div className={styles.timePast}>
             {(() => {
               const timeDiff = new Date() - new Date(createdAt);
-              const minutesDiff = Math.floor(timeDiff / 60000);
+              const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+              const minutes = Math.floor(
+                (timeDiff % (1000 * 60 * 60)) / (1000 * 60)
+              );
 
-              // 1시간(60분) 이내에 생성된 링크만 시간 표시
-              if (minutesDiff <= 60) {
-                return `${minutesDiff} minutes ago`;
+              if (hours > 0 && hours < 24) {
+                return `${hours} hours ago`;
+              } else if (hours >= 24) {
+                const day = Math.floor(hours / 24);
+                return `${day} days ago`;
+              } else {
+                return `${minutes} minutes ago`;
               }
-              return ""; // 1시간이 지난 링크는 빈칸
             })()}
           </div>
-          <Image
-            className={styles.kebab}
-            src="/assets/kebab.png"
-            alt="kebab button"
-            width={21}
-            height={17}
-          />
+          <div className={styles.kebabWrapper}>
+            <button className={styles.kebabButton} onClick={handleKebabClick}>
+              <Image
+                className={styles.kebab}
+                src="/assets/kebab.png"
+                alt="kebab button"
+                width={21}
+                height={17}
+              />
+            </button>
+            {isPopoverOpen && <LinkEditModal ref={ref} />}
+          </div>
         </div>
         <div className={styles.urlTitle}>
-          <p>{description || url}</p>
+          <p onClick={handleCardClick} className={styles.urlTitleText}>
+            {description || url}
+          </p>
         </div>
         <div className={styles.date}>
           <p>{formattedDate}</p>

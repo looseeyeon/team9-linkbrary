@@ -1,4 +1,4 @@
-import LinkCard from "./linkCard";
+import LinkCard from "./LinkCard";
 import Skeleton from "./Skeleton";
 import styles from "@/styles/linkList.module.css";
 

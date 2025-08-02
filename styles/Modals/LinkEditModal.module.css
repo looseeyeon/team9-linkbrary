@@ -1,0 +1,41 @@
+.linkEditModal {
+  display: flex;
+  flex-direction: column;
+  background: var(--gray-light-gray-00, #fff);
+  box-shadow: 0 2px 5px 0 rgba(51, 50, 54, 0.1);
+  width: 100px;
+  height: 64px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 100;
+}
+
+.deleteWrapper {
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--gray-100);
+    color: var(--primary);
+  }
+}
+
+.editWrapper {
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &:hover {
+    background-color: var(--gray-100);
+    color: var(--primary);
+  }
+}

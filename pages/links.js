@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
-import LinkList from "@/components/linkList";
+import LinkList from "@/components/LinkList";
 import { getLinks, createLinks, getLinksByFolderId } from "@/lib/api_links";
 import { getFolders } from "@/lib/api_folders";
 import styles from "@/styles/links.module.css";
@@ -24,7 +24,7 @@ export default function LinkPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [selectedFolderId, setSelectedFolderId] = useState(null);
   const [selectedFolderName, setSelectedFolderName] = useState("전체");
-  const [showAddModal, setShowAddModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [modalSelectedFolder, setModalSelectedFolder] = useState(null);
 
   const handlePageChange = async (page) => {
@@ -111,7 +111,7 @@ export default function LinkPage() {
     try {
       const data = await createLinks(inputLink, folderId, user.token);
       setInputLink("");
-      setShowAddModal(false);
+      setIsOpen(false);
       setModalSelectedFolder(null);
 
       // 링크를 추가한 폴더로 자동 이동
@@ -169,7 +169,7 @@ export default function LinkPage() {
   };
 
   const handleModalClose = () => {
-    setShowAddModal(false);
+    setIsOpen(false);
     setModalSelectedFolder(null);
   };
 
@@ -181,7 +181,7 @@ export default function LinkPage() {
         setInputLink={setInputLink}
         onAddButtonClick={() => {
           if (inputLink.trim()) {
-            setShowAddModal(true);
+            setIsOpen(true);
           }
         }}
       />
@@ -210,7 +210,7 @@ export default function LinkPage() {
       />
       <Footer />
 
-      {showAddModal && (
+      {isOpen && (
         <AddInFolderModal
           folders={folders}
           selectedFolder={modalSelectedFolder}
