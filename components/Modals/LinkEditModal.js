@@ -18,4 +18,7 @@ const LinkEditModal = forwardRef(({ onEdit, onDelete }, ref) => {
   );
 });
 
+LinkEditModal.displayName = "LinkEditModal";
+
+
 export default LinkEditModal;

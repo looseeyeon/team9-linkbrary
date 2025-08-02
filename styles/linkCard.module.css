@@ -7,8 +7,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-
-
+  overflow: hidden;
 }
 
 .imageWrapper {
@@ -17,13 +16,14 @@
   flex-shrink: 0;
   position: relative;
   cursor: pointer;
- 
 }
+
 .favorite {
   position: absolute;
   top: 15px;
   right: 15px;
 }
+
 .infoWrapper {
   display: flex;
   width: 100%;
@@ -49,7 +49,7 @@
   line-height: 1.2;
 }
 
-.urlTitleText{
+.urlTitleText {
   height: 40px;
   cursor: pointer;
 }
@@ -73,6 +73,7 @@
 .cardImage {
   object-position: center;
   object-fit: cover;
+  overflow: hidden;
 }
 
 .kebabButton {
@@ -80,4 +81,3 @@
   background-color: transparent;
   cursor: pointer;
 }
-
