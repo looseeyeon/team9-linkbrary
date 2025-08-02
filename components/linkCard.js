@@ -14,6 +14,12 @@ export default function LinkCard({
   const [imageError, setImageError] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const ref = useRef(null);
+  const onEdit = () => {
+    console.log("edit");
+  };
+  const onDelete = () => {
+    console.log("delete");
+  };
 
   useOnClickOutside(ref, () => setIsPopoverOpen(false));
 
@@ -97,7 +103,13 @@ export default function LinkCard({
                 height={17}
               />
             </button>
-            {isPopoverOpen && <LinkEditModal ref={ref} />}
+            {isPopoverOpen && (
+              <LinkEditModal
+                ref={ref}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
+            )}
           </div>
         </div>
         <div className={styles.urlTitle}>
