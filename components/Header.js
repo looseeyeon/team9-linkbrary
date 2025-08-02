@@ -27,6 +27,7 @@ export default function Header() {
             className={styles.logoImage}
             width={133}
             height={24}
+            priority
           ></Image>
         </Link>
         <div className={styles.headerRight}>
@@ -36,7 +37,7 @@ export default function Header() {
 
           {user && (
             <div className={styles.userInfo}>
-              <Image className={styles.avatar} src={user.imageSource} width={28} height={28}/>
+              <Image className={styles.avatar} alt="avatar" src={user.imageSource} width={28} height={28}/>
               <div>
                 <span>{user.name}</span>
               </div>

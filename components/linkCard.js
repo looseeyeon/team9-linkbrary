@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "@/styles/linkCard.module.css";
+import { useState, useEffect } from "react";
 
 export default function LinkCard({
   imageSource,
@@ -8,9 +9,21 @@ export default function LinkCard({
   title,
   url,
 }) {
+  const [imageError, setImageError] = useState(false);
+
+
   const handleCardClick = () => {
-    window.open(url, "_blank");
+    let fullUrl = url;
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      fullUrl = `https://${url}`;
+    }
+    window.open(fullUrl, "_blank");
   };
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
 
   const date = new Date(createdAt);
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
@@ -26,10 +39,16 @@ export default function LinkCard({
       <div className={styles.imageWrapper}>
         <Image
           className={styles.cardImage}
-          src={imageSource || "/assets/defaultCardImage.png"}
+          src={
+            imageError || !imageSource
+              ? "/assets/defaultCardImage.png"
+              : imageSource
+          }
           alt={title || "defaultImage"}
           width={340}
-          height={250}
+          height={200}
+          onError={handleImageError}
+          unoptimized={true}
         />
 
         <Image

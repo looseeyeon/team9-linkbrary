@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
 import LinkList from "@/components/linkList";
-import { getLinks, createLinks } from "@/lib/api_links";
+import { getLinks, createLinks, getLinksByFolderId } from "@/lib/api_links";
 import { getFolders } from "@/lib/api_folders";
 import styles from "@/styles/links.module.css";
 import Footer from "@/components/Footer";
 import FolderList from "@/components/Folder";
 import Image from "next/image";
 import Pagination from "@/components/Pagination";
+import AddInFolderModal from "@/components/Modals/AddInFolderModal";
 
 export default function LinkPage() {
   const router = useRouter();
@@ -21,69 +22,155 @@ export default function LinkPage() {
   const [folders, setFolders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedFolderId, setSelectedFolderId] = useState(null);
+  const [selectedFolderName, setSelectedFolderName] = useState("전체");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [modalSelectedFolder, setModalSelectedFolder] = useState(null);
 
-  // 페이지 변경 핸들러
   const handlePageChange = async (page) => {
     setCurrentPage(page);
     setIsLoadingLinks(true);
     try {
-      const response = await getLinks(page, 9, user.token);
-      setLinks(response.list || []); // response.list 사용
+      let response;
+      if (selectedFolderId) {
+        response = await getLinksByFolderId(
+          user.token,
+          selectedFolderId,
+          page,
+          9
+        );
+      } else {
+        response = await getLinks(page, 9, user.token);
+      }
+      setLinks(response.list || []);
       setTotalPages(Math.ceil((response.totalCount || 0) / 9));
     } catch (error) {
       console.error("Error loading links:", error);
-      setLinks([]); // 에러 시 빈 배열로 설정
+      setLinks([]);
     } finally {
       setIsLoadingLinks(false);
     }
   };
 
-  // 로그인 확인 및 데이터 로드
+  // 로그인 확인 및 링크 데이터 로드
   useEffect(() => {
     if (isLoading) return;
 
     if (!user) {
       router.push("/login");
     } else {
-      // 함수들을 useEffect 내부로 이동
-      const loadData = async () => {
+      const loadLinks = async () => {
         try {
-          // 링크 로드
           setIsLoadingLinks(true);
-          const response = await getLinks(currentPage, 9, user.token);
-          setLinks(response.list || []); 
+          let response;
+          if (selectedFolderId) {
+            response = await getLinksByFolderId(
+              user.token,
+              selectedFolderId,
+              currentPage,
+              9
+            );
+          } else {
+            response = await getLinks(currentPage, 9, user.token);
+          }
+          setLinks(response.list || []);
           setTotalPages(Math.ceil((response.totalCount || 0) / 9));
-          setIsLoadingLinks(false);
-
-          // 폴더 로드
-          const folderData = await getFolders(user.token);
-          console.log("Received folders:", folderData);
-          setFolders(folderData);
         } catch (error) {
-          console.error("Error loading data:", error);
+          console.error("Error loading links:", error);
+          setLinks([]);
+        } finally {
           setIsLoadingLinks(false);
-          setLinks([]); // 에러 시 빈 배열로 설정
         }
       };
 
-      loadData();
+      loadLinks();
     }
-  }, [user, isLoading, currentPage]);
+  }, [user, isLoading, currentPage, selectedFolderId]);
+
+  // 폴더 데이터 로드 (한 번만)
+  useEffect(() => {
+    if (isLoading || !user) return;
+
+    const loadFolders = async () => {
+      try {
+        const folderData = await getFolders(user.token);
+        setFolders(folderData);
+      } catch (error) {
+        console.error("Error loading folders:", error);
+      }
+    };
+
+    // 폴더가 이미 로드되어 있으면 다시 로드하지 않음
+    if (folders.length === 0) {
+      loadFolders();
+    }
+  }, [user, isLoading]);
 
   // 새 링크 추가 후 처리
   const handleAddLinks = async (folderId) => {
     try {
       const data = await createLinks(inputLink, folderId, user.token);
-      setLinks((prevLinks) => [...prevLinks, data]);
       setInputLink("");
-      // 링크 다시 로드 (첫 페이지로)
+      setShowAddModal(false);
+      setModalSelectedFolder(null);
+
+      // 링크를 추가한 폴더로 자동 이동
+      setSelectedFolderId(folderId);
       setCurrentPage(1);
-      const response = await getLinks(1, 9, user.token);
+
+      // 해당 폴더의 링크들 가져오기
+      let response;
+      if (folderId) {
+        response = await getLinksByFolderId(user.token, folderId, 1, 9);
+        // 폴더 이름도 업데이트
+        const selectedFolder = folders.find((folder) => folder.id === folderId);
+        setSelectedFolderName(selectedFolder ? selectedFolder.name : "전체");
+      } else {
+        response = await getLinks(1, 9, user.token);
+        setSelectedFolderName("전체");
+      }
+
       setLinks(response.list || []);
       setTotalPages(Math.ceil((response.totalCount || 0) / 9));
+
+      // 폴더 정보 새로고침 (linkCount 업데이트)
+      try {
+        const updatedFolders = await getFolders(user.token);
+        setFolders(updatedFolders);
+      } catch (folderError) {
+        console.error("Error refreshing folders:", folderError);
+      }
     } catch (error) {
       console.error("Error adding link:", error);
     }
+  };
+
+  const handleFolderClick = (folderId) => {
+    setSelectedFolderId(folderId);
+    setCurrentPage(1); // 폴더 변경 시 첫 페이지로
+
+    // 선택된 폴더 이름 설정
+    if (folderId) {
+      const selectedFolder = folders.find((folder) => folder.id === folderId);
+      setSelectedFolderName(selectedFolder ? selectedFolder.name : "전체");
+    } else {
+      setSelectedFolderName("전체");
+    }
+  };
+
+  const handleModalFolderClick = (folder) => {
+    setModalSelectedFolder(folder);
+  };
+
+  const handleModalAddClick = () => {
+    if (modalSelectedFolder) {
+      handleAddLinks(modalSelectedFolder.id);
+    }
+  };
+
+  const handleModalClose = () => {
+    setShowAddModal(false);
+    setModalSelectedFolder(null);
   };
 
   return (
@@ -92,12 +179,19 @@ export default function LinkPage() {
       <AddLinks
         inputLink={inputLink}
         setInputLink={setInputLink}
-        handleAddLinks={handleAddLinks}
-        folders={folders}
+        onAddButtonClick={() => {
+          if (inputLink.trim()) {
+            setShowAddModal(true);
+          }
+        }}
       />
-      <FolderList folders={folders} />
+      <FolderList
+        folders={folders}
+        selectedFolderId={selectedFolderId}
+        handleFolderClick={handleFolderClick}
+      />
       <div className={styles.titleWrapper}>
-        <h1 className={styles.title}>전체</h1>
+        <h1 className={styles.title}>{selectedFolderName}</h1>
         <div className={styles.buttonWrapper}>
           <Image src="/assets/share.png" alt="add" width={47} height={18} />
           <Image src="/assets/edit.png" alt="add" width={74} height={18} />
@@ -115,6 +209,16 @@ export default function LinkPage() {
         onPageChange={handlePageChange}
       />
       <Footer />
+
+      {showAddModal && (
+        <AddInFolderModal
+          folders={folders}
+          selectedFolder={modalSelectedFolder}
+          onFolderClick={handleModalFolderClick}
+          onAdd={handleModalAddClick}
+          onClose={handleModalClose}
+        />
+      )}
     </div>
   );
 }

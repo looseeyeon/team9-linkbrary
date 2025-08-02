@@ -37,6 +37,7 @@ export default function LandingPage() {
                 alt={"랜딩페이지 상단이미지"}
                 width={1118}
                 height={659}
+                priority
               ></Image>
             </div>
           </div>

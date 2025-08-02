@@ -12,19 +12,27 @@
   align-items: center;
   padding-left: 8px;
   width: 100%;
+  cursor: pointer;
 }
 .folderItem:hover {
   background-color: var(--gray-100);
   border-radius: 8px;
   height: 40px;
+  cursor: pointer;
 }
 
-.folderItem :active{
+.folderItem.selected {
+  background-color: var(--gray-100);
   color: var(--primary);
+  border-radius: 8px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .folderList {
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   width: 280px;
   padding-top: 24px;
   padding-bottom: 24px;
@@ -32,4 +40,9 @@
 
 .linkCount {
   color: var(--gray-300);
+}
+
+.checkIcon {
+  position: absolute;
+  right: 50px;
 }
