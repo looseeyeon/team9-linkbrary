@@ -1,6 +1,6 @@
 import LinkCard from "./LinkCard";
 import Skeleton from "./Skeleton";
-import styles from "@/styles/linkList.module.css";
+import styles from "@/styles/LinkList.module.css";
 
 export default function LinkList({
   items,
