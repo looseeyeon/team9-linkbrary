@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "@/styles/linkCard.module.css";
 import { useState, useRef } from "react";
-import LinkEditModal from "@/components/Modals/LinkEditModal";
-import useOnClickOutside from "@/hooks/useOnClickOutside";
+import LinkEditModal from "@/components/Modals/LinkEditModal.js";
+import useOnClickOutside from "@/hooks/useOnClickOutside.js";
 
 export default function LinkCard({
   imageSource,

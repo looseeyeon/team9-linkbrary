@@ -1,5 +1,5 @@
-import LinkCard from "./LinkCard";
-import Skeleton from "./Skeleton";
+import LinkCard from "./LinkCard.js";
+import Skeleton from "./Skeleton.js";
 import styles from "@/styles/LinkList.module.css";
 
 export default function LinkList({

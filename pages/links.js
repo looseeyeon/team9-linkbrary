@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
-import LinkList from "@/components/LinkList";
+import LinkList from "@/components/LinkList.js";
 import { getLinks, createLinks, getLinksByFolderId } from "@/lib/api_links";
 import { getFolders } from "@/lib/api_folders";
 import styles from "@/styles/links.module.css";

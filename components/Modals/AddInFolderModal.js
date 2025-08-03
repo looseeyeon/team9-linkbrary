@@ -1,5 +1,5 @@
-import Button from "../Button";
-import Modal from "./Modal";
+import Button from "../Button.js";
+import Modal from "./Modal.js";
 import styles from "@/styles/Modals/AddInFolderModal.module.css";
 import Image from "next/image";
 
