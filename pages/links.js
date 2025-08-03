@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
-import LinkList from "@/components/LinkList.js";
+import LinkList from "@/components/linkList.js";
 import { getLinks, createLinks, getLinksByFolderId } from "@/lib/api_links";
 import { getFolders } from "@/lib/api_folders";
 import styles from "@/styles/links.module.css";
@@ -12,7 +12,6 @@ import FolderList from "@/components/Folder";
 import Image from "next/image";
 import Pagination from "@/components/Pagination";
 import AddInFolderModal from "@/components/Modals/AddInFolderModal.js";
-import { useRef } from "react";
 
 export default function LinkPage() {
   const router = useRouter();

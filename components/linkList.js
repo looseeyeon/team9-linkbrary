@@ -1,6 +1,6 @@
-import LinkCard from "./LinkCard.js";
+import LinkCard from "./linkCard.js";
 import Skeleton from "./Skeleton.js";
-import styles from "@/styles/LinkList.module.css";
+import styles from "@/styles/linkList.module.css";
 
 export default function LinkList({
   items,
@@ -27,5 +27,5 @@ export default function LinkList({
           ))}
     </div>
   );
-  ㅇ;
+
 }
