@@ -11,7 +11,8 @@ import Footer from "@/components/Footer";
 import FolderList from "@/components/Folder";
 import Image from "next/image";
 import Pagination from "@/components/Pagination";
-import AddInFolderModal from "@/components/Modals/AddInFolderModal";
+import AddInFolderModal from "@/components/Modals/AddInFolderModal.js";
+import { useRef } from "react";
 
 export default function LinkPage() {
   const router = useRouter();
