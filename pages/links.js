@@ -1,6 +1,6 @@
 import AddLinks from "@/components/AddLinks";
 import Header from "@/components/Header";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthProvider";
 import LinkList from "@/components/linkList.js";
@@ -101,7 +101,7 @@ export default function LinkPage() {
 
       loadLinks();
     }
-  }, [user, isLoading, currentPage, selectedFolderId]);
+  }, [user, isLoading, currentPage, selectedFolderId, router]);
 
   // 폴더 데이터 로드 (한 번만)
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function LinkPage() {
     if (folders.length === 0) {
       loadFolders();
     }
-  }, [user, isLoading]);
+  }, [user, isLoading, folders.length, loadFolders]);
 
   // 새 링크 추가 후 처리
   const handleAddLinks = async (folderId) => {
