@@ -1,6 +1,6 @@
 import Button from "../Button";
 import Modal from "./Modal";
-import styles from "@/styles/Modals/shareModal.module.css";
+import styles from "@/styles/Modals/ShareModal.module.css";
 
 export default function DeleteModal({
   isOpen,
