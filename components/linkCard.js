@@ -1,8 +1,10 @@
 import Image from "next/image";
 import styles from "@/styles/linkCard.module.css";
 import { useState, useRef } from "react";
-import LinkEditModal from "@/components/Modals/LinkEditModal.js";
+import LinkEditModal from "@/components/Modals/LinkEditModal";
 import useOnClickOutside from "@/hooks/useOnClickOutside.js";
+import { editLink, deleteLink } from "@/lib/api_links.js";
+import { useAuth } from "@/contexts/AuthProvider";
 
 export default function LinkCard({
   imageSource,
@@ -10,16 +12,13 @@ export default function LinkCard({
   createdAt,
   title,
   url,
+  id,
+  onLinkUpdate,
 }) {
+  const { user, getToken } = useAuth();
   const [imageError, setImageError] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const ref = useRef(null);
-  const onEdit = () => {
-    console.log("edit");
-  };
-  const onDelete = () => {
-    console.log("delete");
-  };
 
   useOnClickOutside(ref, () => setIsPopoverOpen(false));
 
@@ -46,6 +45,55 @@ export default function LinkCard({
 
   const handleKebabClick = (e) => {
     setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const handleEditClick = async (newUrl) => {
+    try {
+      if (!user) {
+        console.error("No user found");
+        return;
+      }
+
+      const token = getToken();
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      await editLink(token, id, newUrl);
+      setIsPopoverOpen(false);
+
+      // 부모 컴포넌트에 업데이트 알림
+      if (onLinkUpdate) {
+        onLinkUpdate(id, newUrl);
+      }
+    } catch (error) {
+      console.error("Error editing link:", error);
+    }
+  };
+
+  const handleDeleteClick = async () => {
+    try {
+      if (!user) {
+        console.error("No user found");
+        return;
+      }
+
+      const token = getToken();
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      await deleteLink(token, id);
+
+      // 부모 컴포넌트에 삭제 알림
+      if (onLinkUpdate) {
+        onLinkUpdate(id, null); // null을 전달하여 삭제됨을 알림
+      }
+    } catch (error) {
+      console.error("Error deleting link:", error);
+    }
   };
 
   return (
@@ -106,8 +154,10 @@ export default function LinkCard({
             {isPopoverOpen && (
               <LinkEditModal
                 ref={ref}
-                onEdit={onEdit}
-                onDelete={onDelete}
+                onEdit={handleEditClick}
+                onDelete={handleDeleteClick}
+                currentUrl={url}
+                onClose={() => setIsPopoverOpen(false)}
               />
             )}
           </div>

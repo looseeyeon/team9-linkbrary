@@ -6,6 +6,7 @@ export default function LinkList({
   items,
   isLoading = false,
   skeletonCount = 9,
+  onLinkUpdate,
 }) {
   const { list } = items;
 
@@ -18,14 +19,15 @@ export default function LinkList({
         : list.map((link) => (
             <LinkCard
               key={link.id}
+              id={link.id}
               imageSource={link.imageSource}
               description={link.description}
               createdAt={link.createdAt}
               title={link.title}
               url={link.url}
+              onLinkUpdate={onLinkUpdate}
             />
           ))}
     </div>
   );
-
 }

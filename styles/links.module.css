@@ -23,6 +23,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
+.shareButton{
+  border:0;
+  background-color: transparent;
+  cursor: pointer;
+}
 
+.editButton{
+  border:0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.deleteButton{
+  border:0;
+  background-color: transparent;
+  cursor: pointer;
 }

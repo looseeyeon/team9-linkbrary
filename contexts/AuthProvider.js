@@ -60,11 +60,19 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  const getToken = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("accessToken");
+    }
+    return null;
+  };
+
   const value = {
     user,
     login,
     logout,
     isLoading,
+    getToken,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
